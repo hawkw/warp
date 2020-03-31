@@ -145,6 +145,9 @@ pub use self::filters::{
     sse,
 };
 // ws() function
+#[cfg(feature = "trace")]
+#[doc(hidden)]
+pub use self::filters::trace::{self, trace};
 #[cfg(feature = "websocket")]
 #[doc(hidden)]
 pub use self::filters::ws::ws;

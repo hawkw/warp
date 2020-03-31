@@ -38,6 +38,8 @@ tokio-tungstenite = { version = "0.10", default-features = false, optional = tru
 urlencoding = "1.0.0"
 pin-project = "0.4.5"
 tokio-rustls = { version = "0.12.2", optional = true }
+tracing = { version = "0.1.13", optional = true }
+tracing-futures = { version = "0.2", optional = true }
 
 [dev-dependencies]
 pretty_env_logger = "0.4"
@@ -45,12 +47,14 @@ serde_derive = "1.0"
 handlebars = "3.0.0"
 tokio = { version = "0.2", features = ["macros"] }
 listenfd = "0.3"
+tracing-subscriber = "0.2"
 
 [features]
-default = ["multipart", "websocket"]
+default = ["multipart", "websocket", "trace"]
 websocket = ["tokio-tungstenite"]
 tls = ["tokio-rustls"]
 compression = ["async-compression"]
+trace = ["tracing", "tracing-futures"]
 
 [profile.release]
 codegen-units = 1
@@ -83,3 +87,8 @@ required-features = ["websocket"]
 [[example]]
 name = "websockets_chat"
 required-features = ["websocket"]
+
+
+[[example]]
+name = "tracing"
+required-features = ["trace"]
